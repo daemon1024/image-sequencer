@@ -110,7 +110,7 @@ function sobelFilter(pixels, x, y) {
  * @returns {Number} Category number of the given angle
  */
 function categorizeAngle(angle){
-  if ((angle >= -22.5 && angle <= 22.5) || (angle < -157.5 && angle >= -180)) return 1;
+  if ((angle >= -22.5 && angle <= 22.5) || (angle < -157.5 && angle >= 157.5)) return 1;
   else if ((angle >= 22.5 && angle <= 67.5) || (angle < -112.5 && angle >= -157.5)) return 2;
   else if ((angle >= 67.5 && angle <= 112.5) || (angle < -67.5 && angle >= -112.5)) return 3;
   else if ((angle >= 112.5 && angle <= 157.5) || (angle < -22.5 && angle >= -67.5)) return 4;
