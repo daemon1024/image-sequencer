@@ -111,11 +111,12 @@ function sobelFilter(pixels, x, y) {
  */
 function categorizeAngle(angle){
   const pi = Math.PI;
+  angle = angle > 0 ? angle : pi - Math.abs(angle); // Diagonally flip the angle if it is negative (since edge remains the same)
 
-  if ((angle >= -pi/8 && angle <= pi/8) || (angle > 7*pi/8 || angle <= -7*pi/8)) return 1;
-  else if ((angle >= pi/8 && angle <= 3*pi/8) || (angle < -5*pi/8 && angle >= -7*pi/8)) return 2;
-  else if ((angle >= 3*pi/8 && angle <= 5*pi/8) || (angle < -3*pi/8 && angle >= -5*pi/8)) return 3;
-  else if ((angle >= 5*pi/8 && angle <= 7*pi/8) || (angle < -pi/8 && angle >= -3*pi/8)) return 4;
+  if (angle <= pi/8 || angle > 7*pi/8) return 1;
+  else if (angle > pi/8 && angle <= 3*pi/8) return 2;
+  else if (angle > 3*pi/8 && angle <= 5*pi/8) return 3;
+  else if (angle > 5*pi/8 && angle <= 7*pi/8) return 4;
 
   /* Category Map
   * 1 => E-W
