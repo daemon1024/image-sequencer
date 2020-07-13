@@ -85,12 +85,12 @@ function sobelFilter(pixels, x, y) {
         yn = y + b - 1;
 
       if (isOutOfBounds(pixels, xn, yn)) { // Fallback for coordinates which lie outside the image.
-        gradX += pixels.get(xn + 1, yn + 1, 0) * kernelx[b][a]; // Fallback to nearest pixel
-        gradY += pixels.get(xn + 1, yn + 1, 0) * kernely[b][a];
+        gradX += pixels.get(xn + 1, yn + 1, 0) * kernelx[a][b]; // Fallback to nearest pixel
+        gradY += pixels.get(xn + 1, yn + 1, 0) * kernely[a][b];
       }
       else {
-        gradX += pixels.get(xn, yn, 0) * kernelx[b][a];
-        gradY += pixels.get(xn, yn, 0) * kernely[b][a];
+        gradX += pixels.get(xn, yn, 0) * kernelx[a][b];
+        gradY += pixels.get(xn, yn, 0) * kernely[a][b];
       }
     }
   }
@@ -112,7 +112,7 @@ function sobelFilter(pixels, x, y) {
 function categorizeAngle(angle){
   const pi = Math.PI;
 
-  if ((angle >= -pi/8 && angle <= pi/8) || (angle > 7*pi/8 && angle <= -7*pi/8)) return 1;
+  if ((angle >= -pi/8 && angle <= pi/8) || (angle > 7*pi/8 || angle <= -7*pi/8)) return 1;
   else if ((angle >= pi/8 && angle <= 3*pi/8) || (angle < -5*pi/8 && angle >= -7*pi/8)) return 2;
   else if ((angle >= 3*pi/8 && angle <= 5*pi/8) || (angle < -3*pi/8 && angle >= -5*pi/8)) return 3;
   else if ((angle >= 5*pi/8 && angle <= 7*pi/8) || (angle < -pi/8 && angle >= -3*pi/8)) return 4;
