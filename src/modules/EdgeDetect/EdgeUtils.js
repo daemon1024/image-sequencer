@@ -85,12 +85,12 @@ function sobelFilter(pixels, x, y) {
         yn = y + b - 1;
 
       if (isOutOfBounds(pixels, xn, yn)) { // Fallback for coordinates which lie outside the image.
-        gradX += pixels.get(xn + 1, yn + 1, 0) * kernelx[a][b]; // Fallback to nearest pixel
-        gradY += pixels.get(xn + 1, yn + 1, 0) * kernely[a][b];
+        gradX += pixels.get(xn + 1, yn + 1, 0) * kernelx[b][a]; // Fallback to nearest pixel
+        gradY += pixels.get(xn + 1, yn + 1, 0) * kernely[b][a];
       }
       else {
-        gradX += pixels.get(xn, yn, 0) * kernelx[a][b];
-        gradY += pixels.get(xn, yn, 0) * kernely[a][b];
+        gradX += pixels.get(xn, yn, 0) * kernelx[b][a];
+        gradY += pixels.get(xn, yn, 0) * kernely[b][a];
       }
     }
   }
