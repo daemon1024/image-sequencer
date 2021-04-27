@@ -1,11 +1,19 @@
 const timeout = process.env.SLOWMO ? 30000 : 10000;
 const fs = require('fs');
-beforeAll(async () => {
-  path = fs.realpathSync('file://../examples/index.html');
-  await page.goto('file://' + path, {waitUntil: 'domcontentloaded'});
-});
 
 describe('Color Picker', () => {
+  let page;
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    path = fs.realpathSync('file://../examples/index.html');
+    await page.goto('file://' + path, { waitUntil: 'domcontentloaded' });
+  });
+
+  afterAll(async () => {
+    await page.close();
+  });
+
   test('Color Picker is not breaking other input fields', async () => {
     // Wait for .step to load
     await page.waitForSelector('.step');

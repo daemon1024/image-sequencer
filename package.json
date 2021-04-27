@@ -11,7 +11,7 @@
     "core-tests": "cat ./output/core-tests.js | tape-run --render=\"tap-spec\"",
     "test-all": "npm run test && npm run benchmark && npm run gif-test && grunt tests && npm run core-tests",
     "test-ui": "node node_modules/jasmine/bin/jasmine test/ui/spec/*.js",
-    "test-ui-2": "node ./node_modules/.bin/jest",
+    "test-ui-2": "jest",
     "test-cli": "node test/cli/*.js | tap-spec",
     "setup": "npm i && npm i -g grunt grunt-cli && npm rebuild --build-from-source && grunt build",
     "start": "grunt serve"
@@ -103,6 +103,8 @@
     "jasmine-jquery": "^2.1.1",
     "jasmine-spec-reporter": "^7.0.0",
     "jest": "^26.1.0",
+    "jest-dev-server": "^5.0.0",
+    "jest-environment-node": "^26.6.2",
     "jest-puppeteer": "^4.3.0",
     "lint-staged": "^10.0.3",
     "looks-same": "^7.0.0",
